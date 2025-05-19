@@ -1,4 +1,3 @@
-
 -- DF MENU Retangular com Abas e Botões Adaptados
 
 local Players = game:GetService("Players")
@@ -43,9 +42,9 @@ contentFrame.Parent = menu
 
 local tabList = {
     "Auto Farm",
-    "Raids",
+    "Combate",
+    "Movimentação",
     "Itens",
-    "Visual",
     "Extras"
 }
 
@@ -95,27 +94,186 @@ if panels[tabList[1]] then
     panels[tabList[1]].Visible = true
 end
 
--- Exemplo de botão em Auto Farm
-local function createButton(text, parent)
-    local btn = Instance.new("TextButton")
-    btn.Size = UDim2.new(0, 280, 0, 40)
-    btn.Position = UDim2.new(0, 10, 0, #parent:GetChildren() * 45)
-    btn.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-    btn.Text = text
-    btn.TextColor3 = Color3.fromRGB(255, 255, 255)
-    btn.Font = Enum.Font.SourceSans
-    btn.TextScaled = true
-    btn.Parent = parent
+-- Função para criar switches visuais
+local function createSwitch(text, parent, callback)
+    local container = Instance.new("Frame")
+    container.Size = UDim2.new(1, -20, 0, 40)
+    container.Position = UDim2.new(0, 10, 0, #parent:GetChildren() * 45)
+    container.BackgroundTransparency = 1
+    container.Parent = parent
 
-    btn.MouseButton1Click:Connect(function()
-        print(text .. " ativado")
+    local label = Instance.new("TextLabel")
+    label.Size = UDim2.new(0.7, 0, 1, 0)
+    label.Position = UDim2.new(0, 0, 0, 0)
+    label.BackgroundTransparency = 1
+    label.Text = text
+    label.TextColor3 = Color3.fromRGB(255, 255, 255)
+    label.Font = Enum.Font.SourceSans
+    label.TextScaled = true
+    label.Parent = container
+
+    local toggle = Instance.new("TextButton")
+    toggle.Size = UDim2.new(0.3, -10, 0.6, 0)
+    toggle.Position = UDim2.new(0.7, 10, 0.2, 0)
+    toggle.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+    toggle.Text = ""
+    toggle.Parent = container
+
+    local circle = Instance.new("Frame")
+    circle.Size = UDim2.new(0.5, 0, 1, 0)
+    circle.Position = UDim2.new(0, 0, 0, 0)
+    circle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    circle.Parent = toggle
+
+    local enabled = false
+    toggle.MouseButton1Click:Connect(function()
+        enabled = not enabled
+        if enabled then
+            toggle.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+            circle.Position = UDim2.new(0.5, 0, 0, 0)
+        else
+            toggle.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+            circle.Position = UDim2.new(0, 0, 0, 0)
+        end
+        callback(enabled)
     end)
 end
 
--- Adicionando botões de exemplo
-createButton("Auto Farm Level", panels["Auto Farm"])
-createButton("Auto Farm Boss", panels["Auto Farm"])
-createButton("Auto Raid", panels["Raids"])
-createButton("Comprar Estilo de Luta", panels["Itens"])
-createButton("Fake Beli", panels["Visual"])
-createButton("Auto Shoot", panels["Extras"])
+-- Variáveis de controle
+local AutoClickerEnabled = false
+local AutoShootEnabled = false
+
+-- Funções dos switches
+createSwitch("Auto Farm Level", panels["Auto Farm"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Auto Farm Boss", panels["Auto Farm"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Auto Farm Mastery", panels["Auto Farm"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Auto Farm Itens / Espadas Lendárias", panels["Auto Farm"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Auto TTK", panels["Auto Farm"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Auto Sea 2 / Sea 3", panels["Auto Farm"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Auto Elite Hunter", panels["Auto Farm"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Auto Bartilo Quest", panels["Auto Farm"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Aimbot NPC e Players", panels["Combate"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Auto Shoot (extremo)", panels["Combate"], function(state)
+    AutoShootEnabled = state
+end)
+
+createSwitch("Kill Aura", panels["Combate"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Dash Infinito", panels["Combate"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("God Mode", panels["Combate"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Fly", panels["Movimentação"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Noclip", panels["Movimentação"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Infinite Jump", panels["Movimentação"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Controle de velocidade", panels["Movimentação"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Teleporte por nome e dropdown", panels["Movimentação"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Comprar estilos de luta automaticamente", panels["Itens"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Pegar raça Draco", panels["Itens"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Pegar Sanguine Art", panels["Itens"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Dual Flintlock", panels["Itens"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Auto Haki V1 e V2", panels["Itens"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Auto Clicker rápido (NPC only)", panels["Extras"], function(state)
+    AutoClickerEnabled = state
+end)
+
+createSwitch("ESP (caixas, players)", panels["Extras"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Fake Beli / Fake Status / Fake Level", panels["Extras"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Chuva de Frutas", panels["Extras"], function(state)
+    -- Implementar funcionalidade
+end)
+
+createSwitch("Auto Comprar Frutas", panels["Extras"], function(state)
+    -- Implementar funcionalidade
+end)
+
+-- Loop do Auto Clicker
+task.spawn(function()
+    while true do
+        task.wait(math.random(1, 3) / 100) -- Delay entre 0.01s e 0.03s
+        if AutoClickerEnabled then
+            local Tool = LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass("Tool")
+            if Tool and Tool:FindFirstChild("RemoteEvent") then
+                Tool.RemoteEvent:FireServer()
+            elseif Tool and Tool:FindFirstChild("RemoteFunction") then
+                Tool.RemoteFunction:InvokeServer()
+            else
+                pcall(function() Tool:Activate() end)
+            end
+        end
+    end
+end)
+
+-- Loop do Auto Shoot
+task.spawn(function()
+    while true do
+        task.wait(math.random(5, 15) / 1000) -- Delay entre 0.005s e 00
